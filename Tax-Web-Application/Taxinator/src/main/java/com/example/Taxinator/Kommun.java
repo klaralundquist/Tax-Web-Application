@@ -5,12 +5,12 @@ import java.math.BigDecimal;
 public class Kommun {
    private String name;
    private BigDecimal taxRate;
-   private boolean isChurchMember;
+   private boolean churchMember;
+   private Double salary;
 
     public Kommun(String name, BigDecimal taxRate) {
         this.name = name;
         this.taxRate = taxRate;
-        this.isChurchMember = isChurchMember();
     }
 
     public Kommun() {
@@ -32,11 +32,19 @@ public class Kommun {
         this.taxRate = taxRate;
     }
 
-    public boolean isChurchMember() {
-        return isChurchMember;
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+
+    public boolean getChurchMember() {
+        return churchMember;
     }
 
     public void setChurchMember(boolean churchMember) {
-        this.isChurchMember = churchMember;
+        this.churchMember = churchMember;
     }
 }

@@ -23,15 +23,27 @@ public class KommunRepository {
             return kommuner;
 }
 
-      public Double calculator(Kommun kommun, BigDecimal userInput) {
-            Double result;
+      public Double calculator(Kommun kommun /*Double userInput*/) {
+            Double result = 0.0;
             final BigDecimal churchTax = new BigDecimal("0.0025");
 
-            if (kommun.isChurchMember()) {
-                  result = churchTax.multiply(userInput.multiply(kommun.getTaxRate())).doubleValue();
+            if (kommun.getChurchMember()) {
+                  result = kommun.getSalary() * churchTax * kommun.getTaxRate();
+                  kommun.getTaxRate().multiply(kommun.getSalary().multiply(churchTax)).doubleValue()
             } else {
-                  result = userInput.multiply(kommun.getTaxRate()).doubleValue();
+                  result = kommun.getSalary().multiply(kommun.getTaxRate()).doubleValue();
             }
             return result;
+      }
+
+
+      public Kommun applyTax(Kommun kommun) {
+            for (int i = 0; i < getKommuner().size(); i++) {
+                  if (kommun.getName().equals(getKommuner().get(i).getName())) {
+                        kommun.setTaxRate(getKommuner().get(i).getTaxRate());
+                        return kommun;
+                  }
+            }
+            return null;
       }
 }
