@@ -13,10 +13,13 @@ class TaxinatorApplicationTests {
 	@Autowired
 	KommunRepository repository;
 	@Test
-	void calculator() {
+	void test() {
 		Assertions.assertEquals(7102, repository.calculator(new Kommun("Österåker", new BigDecimal("0.7102")), new BigDecimal(10000.0)));
 		Assertions.assertEquals(7080, repository.calculator(new Kommun("Solna", new BigDecimal("0.708")), new BigDecimal(10000.0)));
-		Assertions.assertEquals(7037, repository.calculator(new Kommun("Täby", new BigDecimal("0.7037")), new BigDecimal(10000.0)));
+		Assertions.assertEquals(false, new Kommun("Täby", new BigDecimal("0.7037")).isChurchMember());
+		Kommun kommun = new Kommun("Täby", new BigDecimal("0.7037"));
+		kommun.setChurchMember(true);
+		Assertions.assertEquals(true, kommun.isChurchMember());
 	}
 
 }

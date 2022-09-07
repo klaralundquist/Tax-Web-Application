@@ -37,6 +37,6 @@ public class Kommun {
     }
 
     public void setChurchMember(boolean churchMember) {
-        isChurchMember = churchMember;
+        this.isChurchMember = churchMember;
     }
 }

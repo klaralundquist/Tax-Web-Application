@@ -28,7 +28,7 @@ public class KommunRepository {
             final BigDecimal churchTax = new BigDecimal("0.0025");
 
             if (kommun.isChurchMember()) {
-                  result = (churchTax.multiply(userInput)).multiply(kommun.getTaxRate()).doubleValue();
+                  result = churchTax.multiply(userInput.multiply(kommun.getTaxRate())).doubleValue();
             } else {
                   result = userInput.multiply(kommun.getTaxRate()).doubleValue();
             }
