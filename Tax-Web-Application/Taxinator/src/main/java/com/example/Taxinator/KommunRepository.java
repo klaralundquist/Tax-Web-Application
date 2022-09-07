@@ -2,6 +2,7 @@ package com.example.Taxinator;
 
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,25 +12,25 @@ public class KommunRepository {
 
       public KommunRepository() {
             kommuner = new ArrayList<>();
-            kommuner.add(new Kommun("Österåker", 0.7102));
-            kommuner.add(new Kommun("Solna", 0.708));
-            kommuner.add(new Kommun("Täby", 0.7037));
-            kommuner.add(new Kommun("Stockholm", 0.7018));
-            kommuner.add(new Kommun("Huddinge", 0.6845));
+            kommuner.add(new Kommun("Österåker", new BigDecimal("0.7102")));
+            kommuner.add(new Kommun("Solna", new BigDecimal("0.708")));
+            kommuner.add(new Kommun("Täby", new BigDecimal("0.7037")));
+            kommuner.add(new Kommun("Stockholm", new BigDecimal("0.7018")));
+            kommuner.add(new Kommun("Huddinge", new BigDecimal("0.6845")));
       }
 
       public List<Kommun> getKommuner () {
             return kommuner;
 }
 
-      public Double calculator(Kommun kommun, Double userInput) {
+      public Double calculator(Kommun kommun, BigDecimal userInput) {
             Double result;
-            final Double churchTax = 0.0025;
+            final BigDecimal churchTax = new BigDecimal("0.0025");
 
             if (kommun.isChurchMember()) {
-                  result = (userInput * churchTax) * kommun.getTaxRate();
+                  result = (churchTax.multiply(userInput)).multiply(kommun.getTaxRate()).doubleValue();
             } else {
-                  result = userInput * kommun.getTaxRate();
+                  result = userInput.multiply(kommun.getTaxRate()).doubleValue();
             }
             return result;
       }

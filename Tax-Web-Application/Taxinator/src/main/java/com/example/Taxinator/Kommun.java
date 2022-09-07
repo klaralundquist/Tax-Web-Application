@@ -1,11 +1,13 @@
 package com.example.Taxinator;
 
+import java.math.BigDecimal;
+
 public class Kommun {
    private String name;
-   private Double taxRate;
+   private BigDecimal taxRate;
    private boolean isChurchMember;
 
-    public Kommun(String name, Double taxRate) {
+    public Kommun(String name, BigDecimal taxRate) {
         this.name = name;
         this.taxRate = taxRate;
         this.isChurchMember = isChurchMember();
@@ -22,11 +24,11 @@ public class Kommun {
         this.name = name;
     }
 
-    public Double getTaxRate() {
+    public BigDecimal getTaxRate() {
         return taxRate;
     }
 
-    public void setTaxRate(Double taxRate) {
+    public void setTaxRate(BigDecimal taxRate) {
         this.taxRate = taxRate;
     }
 
