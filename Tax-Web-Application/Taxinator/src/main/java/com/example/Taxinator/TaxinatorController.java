@@ -20,8 +20,13 @@ public class TaxinatorController {
         return "home";
     }
     @PostMapping("/")
-    public String startPage(@ModelAttribute Kommun kommun, Model model){
+    public String startPage(@ModelAttribute Kommun kommun, Model model) {
         model.addAttribute("kommun", kommun);
+
+        repository.applyTax(kommun);
+        model.addAttribute("salaryAfterTax", repository.calculator(kommun));
+
+        model.addAttribute("kommuner", repository.getKommuner());
         return "home";
     }
 

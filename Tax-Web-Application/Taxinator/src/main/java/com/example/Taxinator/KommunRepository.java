@@ -22,15 +22,26 @@ public class KommunRepository {
             return kommuner;
 }
 
-      public Double calculator(Kommun kommun, Double userInput) {
-            Double result;
-            final Double churchTax = 0.0025;
+      public Double calculator(Kommun kommun /*Double userInput*/) {
+            Double result = 0.0;
+            final Double churchTax = 0.9937;
 
-            if (kommun.isChurchMember()) {
-                  result = (userInput * churchTax) * kommun.getTaxRate();
+            if (kommun.getChurchMember()) {
+                  result = (kommun.getSalary() * churchTax) * kommun.getTaxRate();
             } else {
-                  result = userInput * kommun.getTaxRate();
+                  result = kommun.getSalary() * kommun.getTaxRate();
             }
             return result;
+      }
+
+
+      public Kommun applyTax(Kommun kommun) {
+            for (int i = 0; i < getKommuner().size(); i++) {
+                  if (kommun.getName().equals(getKommuner().get(i).getName())) {
+                        kommun.setTaxRate(getKommuner().get(i).getTaxRate());
+                        return kommun;
+                  }
+            }
+            return null;
       }
 }

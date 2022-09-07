@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Taxinator</title>
 </head>
 <body>
-Test
+<form action="/" method="POST" th:object="${kommun}">
+    Salary before tax: <input type="text" th:field="*{salary}"/>
+    Member of Svenska Kyrkan: <input type="checkbox" th:field="*{churchMember}"/>
+    <select th:field="*{name}">
+        <option th:each="kommun : ${kommuner}" th:value="${kommun.name}" th:text="${kommun.name}"></option>
+    </select>
+    <input type="submit"/>
+</form>
+
+<br>
+
+<div th:if="${kommun.salary != null}">
+    <p><b>Information:</b></p>
+    <p th:text="'Kommun: ' + ${kommun.name}"></p>
+    Member of Church: <span th:text="${kommun.churchMember} ? Yes : No"></span>
+    <p th:text="'Salary before tax: ' + ${kommun.salary}"></p>
+    <p th:text="'Salary after tax: ' + ${salaryAfterTax}"></p>
+</div>
+
 </body>
 </html>
