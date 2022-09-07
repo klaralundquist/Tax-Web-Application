@@ -18,6 +18,10 @@ public class KommunRepository {
             kommuner.add(new Kommun("Huddinge", 0.6845));
       }
 
+      public List<Kommun> getKommuner () {
+            return kommuner;
+}
+
       public Double calculator(Kommun kommun, Double userInput) {
             Double result;
             final Double churchTax = 0.0025;
