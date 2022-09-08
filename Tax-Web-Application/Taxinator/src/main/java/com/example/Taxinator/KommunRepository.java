@@ -1,5 +1,6 @@
 package com.example.Taxinator;
 
+import org.apache.commons.math3.util.Precision;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -25,14 +26,14 @@ public class KommunRepository {
 
       public Double calculator(Kommun kommun) {
             double result;
-            final BigDecimal churchTax = new BigDecimal("0.0025");
+            final BigDecimal churchTax = new BigDecimal("0.9975");
 
             if (kommun.getChurchMember()) {
                   result = kommun.getTaxRate().multiply(kommun.getSalary().multiply(churchTax)).doubleValue();
             } else {
                   result = kommun.getSalary().multiply(kommun.getTaxRate()).doubleValue();
             }
-            return result;
+            return Precision.round(result, 1);
       }
 
 
