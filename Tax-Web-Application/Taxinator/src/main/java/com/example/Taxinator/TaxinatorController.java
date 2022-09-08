@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.math.BigDecimal;
+
 @Controller
 public class TaxinatorController {
     @Autowired
@@ -25,6 +27,12 @@ public class TaxinatorController {
         repository.applyTax(kommun);
         model.addAttribute("salaryAfterTax", repository.calculator(kommun));
 
+        BigDecimal bigDecimal = kommun.getTaxRate();
+        Double taxRate = bigDecimal.doubleValue();
+        Double percentageOfTax = (1-taxRate) * 100;
+        BigDecimal percentage = BigDecimal.valueOf(percentageOfTax);
+
+        model.addAttribute("percentage", percentage);
         model.addAttribute("kommuner", repository.getKommuner());
         return "home";
     }

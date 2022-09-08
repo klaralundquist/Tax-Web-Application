@@ -22,6 +22,7 @@
     Member of Church: <span th:text="${kommun.churchMember} ? Yes : No"></span>
     <p th:text="'Salary before tax: ' + ${kommun.salary}"></p>
     <p th:text="'Salary after tax: ' + ${salaryAfterTax}"></p>
+    <p th:text="'Tax percentage: ' + ${percentage} + '%'"></p>
 </div>
 
 </body>

@@ -25,7 +25,7 @@ public class KommunRepository {
 
       public Double calculator(Kommun kommun) {
             double result;
-            final BigDecimal churchTax = new BigDecimal("0.0025");
+            final BigDecimal churchTax = new BigDecimal("0.9975");
 
             if (kommun.getChurchMember()) {
                   result = kommun.getTaxRate().multiply(kommun.getSalary().multiply(churchTax)).doubleValue();
