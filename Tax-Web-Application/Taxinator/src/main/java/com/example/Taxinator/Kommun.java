@@ -6,7 +6,7 @@ public class Kommun {
    private String name;
    private BigDecimal taxRate;
    private boolean churchMember;
-   private Double salary;
+   private BigDecimal salary;
 
     public Kommun(String name, BigDecimal taxRate) {
         this.name = name;
