@@ -28,13 +28,9 @@ public class TaxinatorController {
         repository.applyTax(kommun);
         model.addAttribute("salaryAfterTax", repository.calculator(kommun));
 
-        BigDecimal bigDecimal = kommun.getTaxRate();
-        Double taxRate = bigDecimal.doubleValue();
-        Double percentageOfTax = (1-taxRate) * 100;
-        //BigDecimal percentage = BigDecimal.valueOf(percentageOfTax);
-        BigDecimal test = BigDecimal.valueOf(Precision.round(percentageOfTax, 2));
+        Double taxRate = repository.getPercentageOfTax(kommun);
 
-        model.addAttribute("percentage", test);
+        model.addAttribute("percentage", taxRate);
         model.addAttribute("kommuner", repository.getKommuner());
         return "home";
     }

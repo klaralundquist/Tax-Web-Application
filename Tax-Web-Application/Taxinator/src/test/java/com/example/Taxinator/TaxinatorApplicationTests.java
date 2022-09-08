@@ -27,7 +27,7 @@ class TaxinatorApplicationTests {
 
 		//Test med decimaltal som resultat.
 		kommun2.setSalary(new BigDecimal("25854"));
-		Assertions.assertEquals(18304.632, repository.calculator(kommun2));
+		Assertions.assertEquals(18304.6, repository.calculator(kommun2));
 
 		//Test med noll som input och resultat.
 		kommun3.setSalary(new BigDecimal("0"));
@@ -37,5 +37,9 @@ class TaxinatorApplicationTests {
 		Assertions.assertEquals(false, kommun4.getChurchMember());
 		kommun4.setChurchMember(true);
 		Assertions.assertEquals(true, kommun4.getChurchMember());
+
+		//Test för att få procentsats
+		Kommun kommun5 = new Kommun("Södertälje", new BigDecimal("0.7"));
+		Assertions.assertEquals(30.0, repository.getPercentageOfTax(kommun5));
 	}
 }
