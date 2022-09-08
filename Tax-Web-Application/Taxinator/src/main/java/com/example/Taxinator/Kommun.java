@@ -32,11 +32,11 @@ public class Kommun {
         this.taxRate = taxRate;
     }
 
-    public Double getSalary() {
+    public BigDecimal getSalary() {
         return salary;
     }
 
-    public void setSalary(Double salary) {
+    public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
 

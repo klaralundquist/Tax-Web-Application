@@ -23,13 +23,12 @@ public class KommunRepository {
             return kommuner;
 }
 
-      public Double calculator(Kommun kommun /*Double userInput*/) {
-            Double result = 0.0;
+      public Double calculator(Kommun kommun) {
+            double result;
             final BigDecimal churchTax = new BigDecimal("0.0025");
 
             if (kommun.getChurchMember()) {
-                  result = kommun.getSalary() * churchTax * kommun.getTaxRate();
-                  kommun.getTaxRate().multiply(kommun.getSalary().multiply(churchTax)).doubleValue()
+                  result = kommun.getTaxRate().multiply(kommun.getSalary().multiply(churchTax)).doubleValue();
             } else {
                   result = kommun.getSalary().multiply(kommun.getTaxRate()).doubleValue();
             }
