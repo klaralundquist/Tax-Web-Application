@@ -5,10 +5,11 @@
     <title>Taxinator</title>
 </head>
 <body>
-<form action="/" method="POST" th:object="${kommun}">
-    Salary before tax: <input type="text" th:field="*{salary}"/>
+<form action="/" method="POST" th:object="${kommun}" >
+    Salary before tax: <input type="text" th:field="*{salary}" required="true"/>
     Member of Svenska Kyrkan: <input type="checkbox" th:field="*{churchMember}"/>
-    <select th:field="*{name}">
+    <select th:field="*{name}" required="true">
+        <option value="" th:hidden="hidden">Välj Kommun...</option>
         <option th:each="kommun : ${kommuner}" th:value="${kommun.name}" th:text="${kommun.name}"></option>
     </select>
     <input type="submit"/>
@@ -16,7 +17,7 @@
 
 <br>
 
-<div th:if="${kommun.salary != null}">
+<div th:if="${kommun.salary != null}" required="true">
     <p><b>Information:</b></p>
     <p th:text="'Kommun: ' + ${kommun.name}"></p>
     Member of Church: <span th:text="${kommun.churchMember} ? Yes : No"></span>
