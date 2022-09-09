@@ -1,33 +1,42 @@
+html {
+    margin: 0px;
+    height: 100%;
+    width: 100%
+}
+
 @media (min-width: 800px) {
     body {
-         position:left;
-          background-color: lightgrey;
-          opacity: 0.85;
-          color: black;
-          font-family: Arial, Helvetica, sans-serif;
-            background-image: url("iwantyourtax.png");
-            background-repeat: no-repeat;
-            background-position: left top;
-            background-size: cover;
-            max-width: 100%;
-            height: auto;
+        position:left;
+        background-color: lightgrey;
+        opacity: 0.85;
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: url("iwantyourtax.png");
+        background-repeat: no-repeat;
+        background-position: left top;
+        background-size: cover;
+        max-width: 100%;
+        margin: 0px;
+        min-height: 100%;
+
     }
 }
 
 @media (max-width: 800px) {
     body {
-             position:left;
-              background-color: lightgrey;
-              opacity: 0.85;
-              color: black;
-              font-family: Arial, Helvetica, sans-serif;
-                background-image: url("iwantyourtax2.png");
-                background-repeat: no-repeat;
-                background-position: left top;
-                background-size: cover;
-                max-width: 100%;
-                height: auto;
-        }
+        position:left;
+        background-color: lightgrey;
+        opacity: 0.85;
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: url("iwantyourtax2.png");
+        background-repeat: no-repeat;
+        background-position: left top;
+        background-size: cover;
+        max-width: 100%;
+        margin: 0px;
+        min-height: 100%;
+    }
 }
 h1 {
     display: flex;
@@ -36,13 +45,21 @@ h1 {
 }
 
 section {
-    display:flex
-   ; width: 100;
+    display:flex;
+    max-width: 100%;
+    margin: 0px;
+    min-height: 100%;
 }
-    input[type=number]{
+
+input[type=number]{
+    border: solid 2px black;
     width:195px;
     height:20px;
     margin-top: 50px;
+}
+
+select {
+    border: solid 2px black;
 }
 
 div {
