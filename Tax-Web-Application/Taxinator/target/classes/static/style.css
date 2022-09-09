@@ -1,60 +1,72 @@
-body {
-     position:left;
-      background-color: lightgrey;
-      opacity: 0.85;
-      color: black;
-      font-family: Arial, Helvetica, sans-serif;
-        background-image: url("iwantyourtax.png");
-        background-repeat: no-repeat;
-        background-position: left top;
-        background-size: cover;
-        max-width: 100%;
-        height: auto;
+@media (min-width: 800px) {
+    body {
+         position:left;
+          background-color: lightgrey;
+          opacity: 0.85;
+          color: black;
+          font-family: Arial, Helvetica, sans-serif;
+            background-image: url("iwantyourtax.png");
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-size: cover;
+            max-width: 100%;
+            height: auto;
+    }
 }
+
+@media (max-width: 800px) {
+    body {
+             position:left;
+              background-color: lightgrey;
+              opacity: 0.85;
+              color: black;
+              font-family: Arial, Helvetica, sans-serif;
+                background-image: url("iwantyourtax2.png");
+                background-repeat: no-repeat;
+                background-position: left top;
+                background-size: cover;
+                max-width: 100%;
+                height: auto;
+        }
+}
+h1 {
+    display: flex;
+    margin-top: 20px
+    margin-bottom: 20px
+}
+
 section {
-display:flex;
-width: 100;
+    display:flex
+   ; width: 100;
 }
     input[type=number]{
     width:195px;
     height:20px;
     margin-top: 50px;
 }
-p {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-family: Arial, Helvetica, sans-serif;
-    width:300px;
-    height:25px;
-
-
-}
 
 div {
   position:fixed;
-  background-color: #19cbe0;
-  color: black;
+  background-color: #3B2D6A;
+  color: white;
   width: 300px;
   border: powderblue;
-  border-radius: 4px;
+  border-radius: 10px;
   padding-left: 10px;
 }
 
 input[type=submit] {
   width: 300px;
-  background-color: #19cbe0;
-  color: black;
+  background-color: #3B2D6A;
+  color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
 }
 input[type=submit]:hover {
-  background-color: #19cbe0;
+  background-color: #62679F;
 }
 
 /*--------------------------------------------Info-Box*/
@@ -73,11 +85,11 @@ input[type=submit]:hover {
 }
 
 .info-content {
-	background-color: #F0F8FF;
+	background-color: #3B2D6A;
 	margin: auto;
 	padding: 20px;
 	border: 1px solid #888;
-	border-radius: 15px;
+	border-radius: 10px;
 	width: 400px;
 
 }
@@ -87,10 +99,13 @@ input[type=submit]:hover {
 	border: none;
 	background-color: inherit;
 }
+.col-xs-12 {
+    display: flex;
+}
 
 .fa-question-circle {
 	font-size: 35px;
-	color: black;
+	color: white;
 }
 
 /*--------------------------------------------Media Responsivness*/
