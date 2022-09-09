@@ -21,10 +21,12 @@ public class TaxinatorController {
     @PostMapping("/")
     public String startPage(@ModelAttribute Kommun kommun, Model model) {
         model.addAttribute("kommun", kommun);
-
         repository.applyTax(kommun);
-        model.addAttribute("salaryAfterTax", repository.calculator(kommun));
 
+        model.addAttribute("salaryAfterTax", repository.calculator(kommun));
+        Double taxRate = repository.getPercentageOfTax(kommun);
+
+        model.addAttribute("percentage", taxRate);
         model.addAttribute("kommuner", repository.getKommuner());
         return "home";
     }
