@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class TaxinatorController {
     @Autowired
@@ -19,7 +23,7 @@ public class TaxinatorController {
         return "home";
     }
     @PostMapping("/")
-    public String startPage(@ModelAttribute Kommun kommun, Model model) {
+    public String startPage(@ModelAttribute Kommun kommun, Model model, HttpSession session) {
         model.addAttribute("kommun", kommun);
         repository.applyTax(kommun);
 
@@ -28,6 +32,19 @@ public class TaxinatorController {
 
         model.addAttribute("percentage", taxRate);
         model.addAttribute("kommuner", repository.getKommuner());
+
+
+
+
+        List<Kommun> kommunList = (List<Kommun>)session.getAttribute("kommunList");
+
+        if (kommunList == null) {
+            kommunList = new ArrayList<>();
+            session.setAttribute("kommunList", kommunList);
+        }
+        kommunList.add(kommun);
+
+
         return "home";
     }
 
