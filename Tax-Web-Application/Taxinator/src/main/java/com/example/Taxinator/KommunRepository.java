@@ -55,12 +55,4 @@ public class KommunRepository {
             return null;
 
       }
-      public Double getPercentageOfTax(Kommun kommun) {
-            BigDecimal taxRate = kommun.getTaxRate();
-            Double taxRate2 = taxRate.doubleValue();
-            Double percentageOfTax = (1-taxRate2) * 100;
-            BigDecimal finalPercentageOfTax = BigDecimal.valueOf(Precision.round(percentageOfTax, 2));
-
-            return finalPercentageOfTax.doubleValue();
-      }
 }
