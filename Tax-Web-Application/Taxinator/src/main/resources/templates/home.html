@@ -10,10 +10,10 @@
 </head>
 <body>
 
+<h1 style="justify-content: center">Taxinator</h1>
 <section style="justify-content: center">
     <!-- Navbar -->
-    <div class="col-xs-12">
-        <a class="navbar-brand" href="#">Taxinator</a>
+    <div class="col-xs-12" style="justify-content: center">
         <button id="info-btn" class="btn"><i class="fa fa-question-circle"></i></button>
     </div>
     <!-- Info-box -->
@@ -36,17 +36,14 @@
     Medlem i Svenska kyrkan: <input type="checkbox" th:field="*{churchMember}"/>
     <br>
     <br>
-    <input type="submit"/>
+    <input type="submit" Value="Beräkna"/>
+    <br>
     <br>
     <div th:if="${kommun.salary != null}">
         <p><b>Information:</b></p>
         <p th:text="'Kommun: ' + ${kommun.name}"></p>
         <p th:text="'Skattesats i ' + ${kommun.name} + ': ' + ${percentage} + '%'"></p>
-        Medlem i Svenska Kyrkan: <span th:text="${kommun.churchMember} ? Ja : Nej">
-   <br>
-   </span>
-
-        <br>
+        <p>Medlem i Svenska Kyrkan: <span th:text="${kommun.churchMember} ? Ja : Nej"></span></p>
         <p th:text="'Lön före skatt: ' + ${kommun.salary} + ' SEK'"></p>
         <p th:text="'Lön efter skatt: ' + ${salaryAfterTax} + ' SEK'">
         </p>
@@ -65,5 +62,6 @@
 </article>
 
     <script src="infobox.js"></script>
+
 </body>
 </html>
