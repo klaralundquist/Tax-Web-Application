@@ -22,3 +22,8 @@ calculates the tax based on what municicipality you live in.</p>
 <li>Bootstrap</li>
 <li>Junit Testing</li>
 </ul>
+<h3>Deployment</h3>
+<ol>
+<li>Step 1. Clone the project</li>
+<li>Step 2. Open up new project through version control in IntelliJ and put in the github url</li>
+</ol>
