@@ -54,14 +54,11 @@
 </section>
 
 
-<article  style="position:relative; left:980px; top:-310px;">
-    <p><b>Historik</b></p>
-    <ul>
-        <li th:each="kommun : ${session.kommunList}" th:text="'Kommun: ' + ${kommun.name} + '. Bruttolön: ' + ${kommun.salary} + ' SEK'"></li>
-    </ul>
-</article>
-
     <script src="infobox.js"></script>
+
+<article style="position:relative; left:980px; top:-310px;">
+    <a href="/historik">Historik</a>
+</article>
 
 </body>
 </html>

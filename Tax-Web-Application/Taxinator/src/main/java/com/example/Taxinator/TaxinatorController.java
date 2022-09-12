@@ -33,9 +33,6 @@ public class TaxinatorController {
         model.addAttribute("percentage", taxRate);
         model.addAttribute("kommuner", repository.getKommuner());
 
-
-
-
         List<Kommun> kommunList = (List<Kommun>)session.getAttribute("kommunList");
 
         if (kommunList == null) {
@@ -44,8 +41,23 @@ public class TaxinatorController {
         }
         kommunList.add(kommun);
 
-
         return "home";
+    }
+    @GetMapping ("/historik")
+    public String historik() {
+        return "skattesatser";
+    }
+    @PostMapping ("/historik")
+    public String historik2(@ModelAttribute Kommun kommun, HttpSession session) {
+        List<Kommun> kommunList = (List<Kommun>)session.getAttribute("kommunList");
+
+        if (kommunList == null) {
+            kommunList = new ArrayList<>();
+            session.setAttribute("kommunList", kommunList);
+        }
+        kommunList.add(kommun);
+
+        return "skattesatser";
     }
 
 }
