@@ -21,4 +21,10 @@ calculates the tax based on what municicipality you live in.</p>
 <li>JavaScript</li>
 <li>Bootstrap</li>
 <li>Junit Testing</li>
+<li>JSON</li>
 </ul>
+<h3>Deployment</h3>
+<ol>
+<li>Clone the project</li>
+<li>Open up new project through version control in IntelliJ and put in the github url</li>
+</ol>

@@ -25,7 +25,7 @@
     </div>
 <form action="/" method="POST" th:object="${kommun}" style="justify-content">
     <br>
-    Lön före skatt: <input type="number" min="0" th:field="*{salary}" required="true" /><br>
+    Lön före skatt: <input type="number" min="0" th:field="*{salary}" required="true" placeholder="Skriv in din bruttolön"/><br>
     <br>
     <select th:field="*{name}" required="true" style="width:300px;height:25px;">
         <option value="" th:hidden="hidden">Välj Kommun...</option>
