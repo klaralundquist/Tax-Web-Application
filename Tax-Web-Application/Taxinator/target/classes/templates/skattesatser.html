@@ -7,23 +7,13 @@
 </head>
 <body>
 
-<h1>Skattesatser</h1>
+<h1 style="justify-content: center">Tidigare sökningar</h1>
 
+<section style="justify-content: center">
 <div>
-  <p><b>Historik</b></p>
-  <ul>
-    <li th:each="kommun : ${session.kommunList}" th:text="'Kommun: ' + ${kommun.name} + '. Bruttolön: ' + ${kommun.salary} + ' SEK'"></li>
-  </ul>
+    <p th:each="kommun : ${session.kommunList}" th:text="'Kommun: ' + ${kommun.name} + '. Lön: ' + ${kommun.salary} + ' SEK'"></p>
 </div>
-
-
-<article>
-<a href="/">Tillbaka</a>
-</article>
-
-<br>
-
-
+</section>
 
 </body>
 </html>

@@ -1,16 +1,28 @@
 package com.example.Taxinator;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
 public class Kommun {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
    private String name;
+   @Column(name="TAXRATE")
    private BigDecimal taxRate;
+   @Column(name="CHURCHMEMBER")
    private boolean churchMember;
+    @Column(name="SALARY")
    private BigDecimal salary;
 
-    public Kommun(String name, BigDecimal taxRate) {
+    public Kommun(Long id, String name, BigDecimal taxRate, boolean churchMember, BigDecimal salary) {
+        this.id = id;
         this.name = name;
         this.taxRate = taxRate;
+        this.churchMember = churchMember;
+        this.salary = salary;
     }
 
     public Kommun() {
@@ -46,5 +58,13 @@ public class Kommun {
 
     public void setChurchMember(boolean churchMember) {
         this.churchMember = churchMember;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
