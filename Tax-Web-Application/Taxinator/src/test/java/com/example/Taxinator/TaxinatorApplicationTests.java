@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 class TaxinatorApplicationTests {
 
 	@Autowired
-	KommunRepository repository;
+    OldKommunRepository repository;
 	@Test
 	void test() {
 
@@ -25,9 +25,9 @@ class TaxinatorApplicationTests {
 		kommun1.setSalary(new BigDecimal("10000"));
 		Assertions.assertEquals(7102, repository.calculator(kommun1));
 
-		//Test med decimaltal som resultat.
-		kommun2.setSalary(new BigDecimal("25854"));
-		Assertions.assertEquals(18304.632, repository.calculator(kommun2));
+		//Test med decimaltal som avrundas uppåt som resultat.
+		kommun2.setSalary(new BigDecimal("25857"));
+		Assertions.assertEquals(18306.8, repository.calculator(kommun2));
 
 		//Test med noll som input och resultat.
 		kommun3.setSalary(new BigDecimal("0"));
