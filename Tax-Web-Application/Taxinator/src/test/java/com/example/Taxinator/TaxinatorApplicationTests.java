@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 class TaxinatorApplicationTests {
 
 	@Autowired
-	KommunRepository repository;
+    OldKommunRepository repository;
 	@Test
 	void test() {
 
