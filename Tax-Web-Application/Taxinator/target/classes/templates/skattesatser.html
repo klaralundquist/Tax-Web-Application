@@ -9,27 +9,20 @@
 
 <h1>Skattesatser</h1>
 
-<article>
+<div>
   <p><b>Historik</b></p>
   <ul>
     <li th:each="kommun : ${session.kommunList}" th:text="'Kommun: ' + ${kommun.name} + '. Bruttolön: ' + ${kommun.salary} + ' SEK'"></li>
   </ul>
-</article>
+</div>
 
 
-<article style="position:relative; left:980px; top:-310px;">
+<article>
 <a href="/">Tillbaka</a>
 </article>
 
 <br>
 
-<div>
-<p>Österåker: 28.98 %</p>
-<p>Solna: 29.20 %</p>
-<p>Täby: 29.63 %</p>
-<p>Stockholm: 29.82 %</p>
-<p>Huddinge: 31.55 %</p>
-</div>
 
 
 </body>
