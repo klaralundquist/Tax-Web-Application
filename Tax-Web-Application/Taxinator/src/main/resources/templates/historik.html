@@ -10,9 +10,13 @@
 <h1 style="justify-content: center">Tidigare sökningar</h1>
 
 <section style="justify-content: center">
-<div>
-    <p th:each="kommun : ${session.kommunList}" th:text="'Kommun: ' + ${kommun.name} + '. Lön: ' + ${kommun.salary} + ' SEK'"></p>
-</div>
+
+    <div th:each="kommun : ${session.kommunList}">
+        <p th:each="kommun : ${session.kommunList}" th:text="'Kommun: ' + ${kommun.name}"></p>
+        <p th:each="person : ${session.personList}" th:text="'Kommun: ' + ${kommun.name} + ' Bruttolön: ' + ${person.salary} + ' SEK. Nettolön: ' + ${person.salaryAfterTax} + ' SEK.'"></p>
+    </div>
+
+
 </section>
 
 </body>
