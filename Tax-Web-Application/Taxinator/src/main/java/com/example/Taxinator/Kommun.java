@@ -1,6 +1,10 @@
 package com.example.Taxinator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +14,13 @@ public class Kommun {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty
+    private String name;
+    @Column(name = "TAXRATE")
+    private BigDecimal taxRate;
 
-   private String name;
-   @Column(name="TAXRATE")
-   private BigDecimal taxRate;
-
-   @OneToMany(mappedBy = "kommun", cascade = CascadeType.ALL)
-   private List<Person> persons = new ArrayList<>();
+    @OneToMany(mappedBy = "kommun", cascade = CascadeType.ALL)
+    private List<Person> persons = new ArrayList<>();
 
 
     public Kommun(Long id, String name, BigDecimal taxRate) {
@@ -25,8 +29,11 @@ public class Kommun {
         this.taxRate = taxRate;
     }
 
+     */
+
     public Kommun() {
     }
+
 
     public String getName() {
         return name;
@@ -58,5 +65,13 @@ public class Kommun {
 
     public void setPersons(List<Person> persons) {
         this.persons = persons;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
