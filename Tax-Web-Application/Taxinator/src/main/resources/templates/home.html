@@ -1,28 +1,67 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      type="text/css"/>
+<link rel="stylesheet" href="style.css">
 <head>
     <meta charset="UTF-8">
     <title>Taxinator</title>
 </head>
 <body>
-<form action="/" method="POST" th:object="${kommun}">
-    Salary before tax: <input type="text" th:field="*{salary}"/>
-    Member of Svenska Kyrkan: <input type="checkbox" th:field="*{churchMember}"/>
-    <select th:field="*{name}">
-        <option th:each="kommun : ${kommuner}" th:value="${kommun.name}" th:text="${kommun.name}"></option>
-    </select>
-    <input type="submit"/>
-</form>
 
-<br>
+<h1 style="justify-content: center">Taxinator</h1>
 
-<div th:if="${kommun.salary != null}">
-    <p><b>Information:</b></p>
-    <p th:text="'Kommun: ' + ${kommun.name}"></p>
-    Member of Church: <span th:text="${kommun.churchMember} ? Yes : No"></span>
-    <p th:text="'Salary before tax: ' + ${kommun.salary}"></p>
-    <p th:text="'Salary after tax: ' + ${salaryAfterTax}"></p>
-</div>
+<section style="justify-content: center">
+
+    <!-- Navbar -->
+    <div class="col-xs-12" style="justify-content: center">
+        <button id="info-btn" class="btn"><i class="fa fa-question-circle"></i></button>
+    </div>
+
+    <!-- Info-box -->
+    <div id="info-dialog" class="dialog">
+        <div class="info-content">
+            <p class="text-black">This application is intended for users to put in their salary before tax and choose
+                from the drop-down menu in which municipality you live in and. If you are member of the Swedish church
+                then you can check in the box</p>
+        </div>
+    </div>
+
+    <form action="/result" method="POST" th:object="${kommun}" style="justify-content">
+
+        <br>
+
+        Lön före skatt: <input type="number" th:field="*{salary}" placeholder="Skriv in din bruttolön" th:errorclass="error"/>
+        <p th:if="${#fields.hasErrors('salary')}" class="errorText">Skriv ett tal större än noll</p>
+
+        <p></p>
+
+        <p style="margin-bottom: 0rem;">
+            <select th:field="*{name}" th:errorclass="error">
+                <option value="" th:hidden="hidden">Välj Kommun...</option>
+                <option th:each="kommun : ${kommuner}" th:value="${kommun.name}" th:text="${kommun.name}"></option>
+            </select>
+        </p>
+        <p th:if="${#fields.hasErrors('name')}" class="errorText" style="margin-bottom: 0rem;">Välj en kommun</p>
+
+
+        Medlem i Svenska kyrkan: <input type="checkbox" th:field="*{churchMember}" style="margin-top: 1rem;"/>
+
+        <br>
+        <br>
+
+        <input type="submit" Value="Beräkna"/>
+
+        <br>
+        <br>
+
+    </form>
+
+</section>
+
+<script src="infobox.js"></script>
 
 </body>
 </html>

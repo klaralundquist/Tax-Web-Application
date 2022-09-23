@@ -1,11 +1,16 @@
 package com.example.Taxinator;
 
+import org.apache.commons.math3.util.Precision;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Controller
 public class TaxinatorController {
@@ -15,18 +20,59 @@ public class TaxinatorController {
     @GetMapping("/")
     public String homePage(Model model){
         model.addAttribute("kommun", new Kommun());
-        model.addAttribute("kommuner", repository.getKommuner());
+        model.addAttribute("kommuner", (List)repository.findAll());
         return "home";
     }
-    @PostMapping("/")
-    public String startPage(@ModelAttribute Kommun kommun, Model model) {
+    @PostMapping("/result")
+    public String startPage(@Valid Kommun kommun, BindingResult result, Model model) {
+        model.addAttribute("kommuner", (List)repository.findAll());
+        if (result.hasErrors()) {
+            return "home";
+        }
+
         model.addAttribute("kommun", kommun);
+        applyTax(kommun);
 
-        repository.applyTax(kommun);
-        model.addAttribute("salaryAfterTax", repository.calculator(kommun));
+        model.addAttribute("salaryAfterTax", calculator(kommun));
+        Double taxRate = getPercentageOfTax(kommun);
 
-        model.addAttribute("kommuner", repository.getKommuner());
-        return "home";
+        model.addAttribute("percentage", taxRate);
+
+        return "result";
+    }
+
+    public static Double calculator(Kommun kommun) {
+        double result;
+        final BigDecimal churchTax = new BigDecimal("0.9975");
+
+        if (kommun.getChurchMember()) {
+            result = kommun.getTaxRate().multiply(kommun.getSalary().multiply(churchTax)).doubleValue();
+        } else {
+            result = kommun.getSalary().multiply(kommun.getTaxRate()).doubleValue();
+        }
+        return Precision.round(result, 1);
+    }
+    public Double getPercentageOfTax(Kommun kommun) {
+        BigDecimal taxRate = kommun.getTaxRate();
+        Double taxRate2 = taxRate.doubleValue();
+        Double percentageOfTax = (1-taxRate2) * 100;
+        BigDecimal finalPercentageOfTax = BigDecimal.valueOf(Precision.round(percentageOfTax, 2));
+
+        return finalPercentageOfTax.doubleValue();
+    }
+
+
+    public Kommun applyTax(Kommun kommun) {
+        List<Kommun> kommuner = (List<Kommun>)repository.findAll();
+        for (int i = 0; i < kommuner.size(); i++) {
+
+            if(kommun.getName().equals(kommuner.get(i).getName())) {
+                kommun.setTaxRate(kommuner.get(i).getTaxRate());
+                return kommun;
+            }
+        }
+        return null;
+
     }
 
 }

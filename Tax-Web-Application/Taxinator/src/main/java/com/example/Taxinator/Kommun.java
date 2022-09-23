@@ -1,20 +1,47 @@
 package com.example.Taxinator;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
+@Entity
 public class Kommun {
-   private String name;
-   private BigDecimal taxRate;
-   private boolean churchMember;
-   private BigDecimal salary;
 
-    public Kommun(String name, BigDecimal taxRate) {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotEmpty
+    private String name;
+    @Column(name = "TAXRATE")
+    private BigDecimal taxRate;
+    @Column(name = "CHURCHMEMBER")
+    private boolean churchMember;
+    @Column(name = "SALARY") @NotNull @Positive
+    private BigDecimal salary;
+
+    public Kommun(Long id, String name, BigDecimal taxRate, boolean churchMember, BigDecimal salary) {
+        this.id = id;
+        this.name = name;
+        this.taxRate = taxRate;
+        this.churchMember = churchMember;
+        this.salary = salary;
+    }
+
+
+    /*public Kommun(String name, BigDecimal taxRate) {
         this.name = name;
         this.taxRate = taxRate;
     }
 
+     */
+
     public Kommun() {
     }
+
 
     public String getName() {
         return name;
@@ -46,5 +73,13 @@ public class Kommun {
 
     public void setChurchMember(boolean churchMember) {
         this.churchMember = churchMember;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
