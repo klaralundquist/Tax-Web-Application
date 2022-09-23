@@ -33,10 +33,10 @@ public class TaxinatorController {
     }
 
     @PostMapping("/result")
-    public String startPage(@Valid Person person, @Valid Kommun kommun, Model model, HttpSession session, BindingResult result) {
+    public String startPage(@Valid Person person, BindingResult resultPerson, @Valid Kommun kommun, BindingResult resultKommun, Model model, HttpSession session) {
         model.addAttribute("kommuner", (List) repository.findAll());
 
-        if (result.hasErrors()) {
+        if (resultKommun.hasErrors() || resultPerson.hasErrors()) {
             return "home";
         }
 

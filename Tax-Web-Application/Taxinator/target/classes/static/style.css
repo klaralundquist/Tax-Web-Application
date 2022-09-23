@@ -63,7 +63,7 @@ select {
 }
 
 div {
-  position:fixed;
+  position:absolute;
   background-color: #3B2D6A;
   color: white;
   width: 300px;
