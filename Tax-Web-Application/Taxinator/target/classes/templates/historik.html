@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:width="http://www.w3.org/1999/xhtml"      xmlns:C="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" href="style.css">
+<head>
+  <meta charset="UTF-8">
+  <title>Taxinator</title>
+</head>
+<body>
+
+<h1 style="justify-content: center">Tidigare sökningar</h1>
+
+<section style="justify-content: center">
+
+    <div th:each="kommun : ${session.kommunList}">
+        <p th:each="kommun : ${session.kommunList}" th:text="'Kommun: ' + ${kommun.name}"></p>
+        <p th:each="person : ${session.personList}" th:text="'Bruttolön: ' + ${person.salary} + ' :- Nettolön: ' + ${person.salaryAfterTax} + ' :-'"></p>
+    </div>
+
+
+</section>
+
+</body>
+</html>

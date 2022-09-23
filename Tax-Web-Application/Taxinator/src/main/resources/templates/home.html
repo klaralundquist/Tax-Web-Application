@@ -23,11 +23,11 @@
                 from the drop-down menu in which municipality you live in and. If you are member of the Swedish church then you can check in the box</p>
         </div>
     </div>
-<form action="/" method="POST" th:object="${kommun}" style="justify-content">
+<form action="/" method="POST" th:object="${person}" style="justify-content">
     <br>
     Lön före skatt: <input type="number" min="0" th:field="*{salary}" required="true" placeholder="Skriv in din bruttolön"/><br>
     <br>
-    <select th:field="*{name}" required="true" style="width:300px;height:25px;">
+    <select th:field="${kommun.name}" required="true" style="width:300px;height:25px;">
         <option value="" th:hidden="hidden">Välj Kommun...</option>
         <option th:each="kommun : ${kommuner}" th:value="${kommun.name}" th:text="${kommun.name}"></option>
     </select>
@@ -39,21 +39,26 @@
     <input type="submit" Value="Beräkna"/>
     <br>
     <br>
-    <div th:if="${kommun.salary != null}">
+    <div th:if="${person.salary != null}">
         <p><b>Information:</b></p>
         <p th:text="'Kommun: ' + ${kommun.name}"></p>
         <p th:text="'Skattesats i ' + ${kommun.name} + ': ' + ${percentage} + '%'"></p>
-        <p>Medlem i Svenska Kyrkan: <span th:text="${kommun.churchMember} ? Ja : Nej"></span></p>
-        <p th:text="'Lön före skatt: ' + ${kommun.salary} + ' SEK'"></p>
+        <p>Medlem i Svenska Kyrkan: <span th:text="${person.churchMember} ? Ja : Nej"></span></p>
+        <p th:text="'Lön före skatt: ' + ${person.salary} + ' SEK'"></p>
         <p th:text="'Lön efter skatt: ' + ${salaryAfterTax} + ' SEK'">
         </p>
-        <p th:text="'Summa skatter: ' + ${kommun.salary - salaryAfterTax} + ' SEK'"></p>
+        <p th:text="'Summa skatter: ' + ${person.salary - salaryAfterTax} + ' SEK'"></p>
     </div>
 </form>
 
 </section>
 
+
     <script src="infobox.js"></script>
+
+<article style="position:relative; left:980px; top:-310px;">
+    <a href="/historik">Historik</a>
+</article>
 
 </body>
 </html>

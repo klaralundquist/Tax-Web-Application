@@ -72,6 +72,16 @@ div {
   padding-left: 10px;
 }
 
+article {
+   background-color: #3B2D6A;
+   color: white;
+   width: 350px;
+   border: powderblue;
+   border-radius: 10px;
+   padding-left: 10px;
+   padding-bottom: 10px;
+}
+
 input[type=submit] {
   width: 300px;
   background-color: #3B2D6A;

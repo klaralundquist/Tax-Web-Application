@@ -10,32 +10,53 @@ import java.math.BigDecimal;
 @SpringBootTest
 class TaxinatorApplicationTests {
 
-	@Autowired
-    OldKommunRepository repository;
-	@Test
-	void test() {
+    @Autowired
+    KommunRepository repository;
 
-		//Instansiering av kommuner med information från KommunRepository.
-		Kommun kommun1 = new Kommun("Österåker", new BigDecimal("0.7102"));
-		Kommun kommun2 = new Kommun("Solna", new BigDecimal("0.708"));
-		Kommun kommun3 = new Kommun("Täby", new BigDecimal("0.7037"));
-		Kommun kommun4 = new Kommun("Stockholm", new BigDecimal("0.7018"));
+    @Autowired
+    TaxinatorController controller;
 
-		//Test med heltal som resultat.
-		kommun1.setSalary(new BigDecimal("10000"));
-		Assertions.assertEquals(7102, repository.calculator(kommun1));
+    @Test
+    void test1() {
+        Person person1 = new Person(1L, new BigDecimal ("0"), false, new BigDecimal("10000"));
+        Kommun kommun1 = new Kommun(1L, "Österåker", new BigDecimal("0.7102"));
 
-		//Test med decimaltal som avrundas uppåt som resultat.
-		kommun2.setSalary(new BigDecimal("25857"));
-		Assertions.assertEquals(18306.8, repository.calculator(kommun2));
+        //Test med heltal som resultat.
 
-		//Test med noll som input och resultat.
-		kommun3.setSalary(new BigDecimal("0"));
-		Assertions.assertEquals(0, repository.calculator(kommun3));
+        Assertions.assertEquals(7102, controller.calculator(person1, kommun1));
+    }
 
-		//Test för kyrkoskatt true or false.
-		Assertions.assertEquals(false, kommun4.getChurchMember());
-		kommun4.setChurchMember(true);
-		Assertions.assertEquals(true, kommun4.getChurchMember());
-	}
+    @Test
+    void test2() {
+        Person person2 = new Person(2L, new BigDecimal("0"), false, new BigDecimal("25857"));
+        Kommun kommun2 = new Kommun(2L, "Solna", new BigDecimal("0.708"));
+
+        //Test med decimaltal som avrundas uppåt som resultat.
+
+        Assertions.assertEquals(18306.8, controller.calculator(person2, kommun2));
+    }
+
+
+    @Test
+    void test3() {
+        Person person3 = new Person (3L, new BigDecimal("0"), false, new BigDecimal("0"));
+
+        Kommun kommun3 = new Kommun(3L, "Täby", new BigDecimal("0.7037"));
+
+        //Test med noll som input och resultat.
+
+        Assertions.assertEquals(0, controller.calculator(person3, kommun3));
+    }
+
+
+
+    @Test
+    void test4() {
+        Person person4 = new Person(4L, new BigDecimal("0"), false, new BigDecimal("0"));
+
+        //Test för kyrkoskatt true or false.
+        Assertions.assertEquals(false, person4.getChurchMember());
+        person4.setChurchMember(true);
+        Assertions.assertEquals(true, person4.getChurchMember());
+    }
 }

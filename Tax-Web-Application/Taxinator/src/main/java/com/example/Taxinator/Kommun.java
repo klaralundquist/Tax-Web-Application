@@ -2,12 +2,11 @@ package com.example.Taxinator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Kommun {
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,26 +14,16 @@ public class Kommun {
    private String name;
    @Column(name="TAXRATE")
    private BigDecimal taxRate;
-   @Column(name="CHURCHMEMBER")
-   private boolean churchMember;
-    @Column(name="SALARY")
-   private BigDecimal salary;
 
-    public Kommun(Long id, String name, BigDecimal taxRate, boolean churchMember, BigDecimal salary) {
+   @OneToMany(mappedBy = "kommun", cascade = CascadeType.ALL)
+   private List<Person> persons = new ArrayList<>();
+
+
+    public Kommun(Long id, String name, BigDecimal taxRate) {
         this.id = id;
         this.name = name;
         this.taxRate = taxRate;
-        this.churchMember = churchMember;
-        this.salary = salary;
     }
-
-
-    /*public Kommun(String name, BigDecimal taxRate) {
-        this.name = name;
-        this.taxRate = taxRate;
-    }
-
-     */
 
     public Kommun() {
     }
@@ -55,27 +44,19 @@ public class Kommun {
         this.taxRate = taxRate;
     }
 
-    public BigDecimal getSalary() {
-        return salary;
-    }
-
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
-    }
-
-    public boolean getChurchMember() {
-        return churchMember;
-    }
-
-    public void setChurchMember(boolean churchMember) {
-        this.churchMember = churchMember;
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Person> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(List<Person> persons) {
+        this.persons = persons;
     }
 }
