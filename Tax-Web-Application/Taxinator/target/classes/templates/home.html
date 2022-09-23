@@ -48,6 +48,7 @@
         <p th:text="'Lön efter skatt: ' + ${salaryAfterTax} + ' SEK'">
         </p>
         <p th:text="'Summa skatter: ' + ${person.salary - salaryAfterTax} + ' SEK'"></p>
+        <p style="text-align: center"><a style="color: white" href="/historik">Historik</a></p>
     </div>
 </form>
 
@@ -56,9 +57,9 @@
 
     <script src="infobox.js"></script>
 
-<article style="position:relative; left:980px; top:-310px;">
-    <a href="/historik">Historik</a>
-</article>
+
+
+
 
 </body>
 </html>

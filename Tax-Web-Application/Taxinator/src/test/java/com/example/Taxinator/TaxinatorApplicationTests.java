@@ -14,7 +14,7 @@ class TaxinatorApplicationTests {
     KommunRepository repository;
 
     @Autowired
-    TaxinatorController controller;
+    KommunService kommunService;
 
     @Test
     void test1() {
@@ -23,7 +23,7 @@ class TaxinatorApplicationTests {
 
         //Test med heltal som resultat.
 
-        Assertions.assertEquals(7102, controller.calculator(person1, kommun1));
+        Assertions.assertEquals(7102, kommunService.calculator(person1, kommun1));
     }
 
     @Test
@@ -33,7 +33,7 @@ class TaxinatorApplicationTests {
 
         //Test med decimaltal som avrundas uppåt som resultat.
 
-        Assertions.assertEquals(18306.8, controller.calculator(person2, kommun2));
+        Assertions.assertEquals(18306.8, kommunService.calculator(person2, kommun2));
     }
 
 
@@ -45,7 +45,7 @@ class TaxinatorApplicationTests {
 
         //Test med noll som input och resultat.
 
-        Assertions.assertEquals(0, controller.calculator(person3, kommun3));
+        Assertions.assertEquals(0, kommunService.calculator(person3, kommun3));
     }
 
 

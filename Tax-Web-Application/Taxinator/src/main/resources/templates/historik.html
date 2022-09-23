@@ -14,8 +14,9 @@
     <div th:each="kommun : ${session.kommunList}">
         <p th:each="kommun : ${session.kommunList}" th:text="'Kommun: ' + ${kommun.name}"></p>
         <p th:each="person : ${session.personList}" th:text="'Bruttolön: ' + ${person.salary} + ' :- Nettolön: ' + ${person.salaryAfterTax} + ' :-'"></p>
-    </div>
+        <p><a style="color: white" href="/">Gå tillbaka</a></p>
 
+    </div>
 
 </section>
 
