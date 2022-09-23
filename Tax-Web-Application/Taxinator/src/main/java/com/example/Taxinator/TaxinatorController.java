@@ -73,8 +73,6 @@ public class TaxinatorController {
 
         }
 
-        System.out.println(kommun.getPersons());
-
         kommunList.add(kommun);
         personList.add(person);
 
