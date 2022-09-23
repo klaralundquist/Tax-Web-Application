@@ -29,9 +29,8 @@
         </div>
     </div>
 
-    <form action="/result" method="POST" th:object="${kommun}" style="justify-content">
+    <form action="/result" method="POST" th:object="${person}" style="justify-content">
 
-        <br>
         <br>
 
         Lön före skatt: <input type="number" th:field="*{salary}" placeholder="Skriv in din bruttolön" th:errorclass="error"/>
@@ -40,17 +39,17 @@
         <p></p>
 
         <p style="margin-bottom: 0rem;">
-            <select th:field="*{name}" th:errorclass="error">
+            <select th:field="${kommun.name}" th:errorclass="error">
                 <option value="" th:hidden="hidden">Välj Kommun...</option>
                 <option th:each="kommun : ${kommuner}" th:value="${kommun.name}" th:text="${kommun.name}"></option>
             </select>
         </p>
-        <p th:if="${#fields.hasErrors('name')}" class="errorText">Välj en kommun</p>
+        <p th:if="${#fields.hasErrors('kommun.name')}" class="errorText" style="margin-bottom: 0rem;">Välj en kommun</p>
 
         <br>
         <br>
 
-        Medlem i Svenska kyrkan: <input type="checkbox" th:field="*{churchMember}"/>
+        Medlem i Svenska kyrkan: <input type="checkbox" th:field="*{churchMember}" style="margin-top: 1rem;"/>
 
         <br>
         <br>
@@ -60,15 +59,16 @@
         <br>
         <br>
 
-        <div th:if="${kommun.salary != null}">
+        <div>
             <p><b>Information:</b></p>
             <p th:text="'Kommun: ' + ${kommun.name}"></p>
             <p th:text="'Skattesats i ' + ${kommun.name} + ': ' + ${percentage} + '%'"></p>
-            <p>Medlem i Svenska Kyrkan: <span th:text="${kommun.churchMember} ? Ja : Nej"></span></p>
-            <p th:text="'Lön före skatt: ' + ${kommun.salary} + ' SEK'"></p>
+            <p>Medlem i Svenska Kyrkan: <span th:text="${person.churchMember} ? Ja : Nej"></span></p>
+            <p th:text="'Lön före skatt: ' + ${person.salary} + ' SEK'"></p>
             <p th:text="'Lön efter skatt: ' + ${salaryAfterTax} + ' SEK'">
             </p>
-            <p th:text="'Summa skatter: ' + ${kommun.salary - salaryAfterTax} + ' SEK'"></p>
+            <p th:text="'Summa skatter: ' + ${person.salary - salaryAfterTax} + ' SEK'"></p>
+            <p style="text-align: center"><a style="color: white" href="/historik">Historik</a></p>
         </div>
 
     </form>

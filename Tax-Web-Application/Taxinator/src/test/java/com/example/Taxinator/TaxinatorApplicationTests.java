@@ -16,6 +16,7 @@ class TaxinatorApplicationTests {
     @Autowired
     KommunService kommunService;
 
+
     @Test
     void test1() {
         Person person1 = new Person(1L, new BigDecimal ("0"), false, new BigDecimal("10000"));
@@ -25,6 +26,7 @@ class TaxinatorApplicationTests {
 
         Assertions.assertEquals(7102, kommunService.calculator(person1, kommun1));
     }
+
 
     @Test
     void test2() {
@@ -47,7 +49,6 @@ class TaxinatorApplicationTests {
 
         Assertions.assertEquals(0, kommunService.calculator(person3, kommun3));
     }
-
 
 
     @Test

@@ -2,9 +2,7 @@ package com.example.Taxinator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +27,8 @@ public class Kommun {
         this.taxRate = taxRate;
     }
 
-     */
-
     public Kommun() {
     }
-
 
     public String getName() {
         return name;
@@ -67,11 +62,4 @@ public class Kommun {
         this.persons = persons;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

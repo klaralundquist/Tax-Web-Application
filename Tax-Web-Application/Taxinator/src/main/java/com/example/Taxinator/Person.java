@@ -2,6 +2,8 @@ package com.example.Taxinator;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 @Entity
@@ -10,10 +12,9 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private BigDecimal salaryAfterTax;
-
     @Column(name="CHURCHMEMBER")
     private boolean churchMember;
-    @Column(name="SALARY")
+    @Column(name="SALARY") @NotNull @Positive
     private BigDecimal salary;
 
     @ManyToOne
